@@ -1,0 +1,20 @@
+<div nz-row nzJustify="center" nzAlign="top">
+  <div nz-col>
+    <nz-range-picker nzMode="month" [nzDefaultPickerValue]="chartDates" [(ngModel)]="date"
+      (ngModelChange)="onChangeRangeHandler($event)" [nzDisabledDate]="disabledDate"></nz-range-picker>
+  </div>
+  <div nz-col nzOffset = "2" >
+    <nz-radio-group  nzSize="large" [ngModel]="selectedChart" (ngModelChange)="chartChangeHandler($event)">
+      <label nz-radio-button nzValue="" class="button-margin">Both</label>
+      <label nz-radio-button nzValue="total_rev" class="button-text-red">Total Rev</label>
+      <label nz-radio-button nzValue="total_vol" class="button-margin button-text-blue">Total Vol</label>
+    </nz-radio-group>
+  </div>
+  <div nz-col nzOffset = "2" >
+    <button nz-button nzType="primary" nzSize="large" nzShape="round" (click)="downloadImage()">
+      <i nz-icon nzType="download"></i>
+      Download
+    </button>
+  </div>
+</div>
+<div class="linechart"></div>

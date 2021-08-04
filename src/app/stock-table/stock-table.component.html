@@ -1,0 +1,40 @@
+<div nz-row nzJustify="center" nzAlign="top">
+  <div nz-col>
+    <button nz-button nzType="primary" nzSize="large" nzShape="round" (click)="downloadCSV()">
+      <i nz-icon nzType="download"></i>
+      Download
+    </button>
+  </div>
+</div>
+<nz-table
+#headerTable
+[nzData]="stockData"
+[nzScroll]="{ x: '1150px', y: '240px' }"
+[nzPageSize]="50"
+[nzLoading]="loading"
+[nzPageSizeOptions]="[10, 50, 100, 200]"
+[nzShowSizeChanger]="true"
+(nzPageIndexChange)="onPageIndexChange($event)"
+(nzPageSizeChange)="onPageSizeChange($event)"
+>
+  <thead>
+    <tr>
+      <th *ngFor="let column of listOfColumns" [nzSortOrder]="column.sortOrder" [nzSortFn]="column.sortFn"
+        [nzSortDirections]="column.sortDirections">
+        {{ column.name }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of headerTable.data">
+      <td>{{data.name}}</td>
+      <td>{{data.date | date: 'shortDate'}}</td>
+      <td>{{data.open_price}}</td>
+      <td>{{data.close_price}}</td>
+      <td>{{data.high_price}}</td>
+      <td>{{data.low_price}}</td>
+      <td>{{data.volume}}</td>
+      <td>{{data.market}}</td>
+    </tr>
+  </tbody>
+</nz-table>
